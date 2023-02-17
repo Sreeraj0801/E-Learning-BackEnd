@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 
 const classSchema = new mongoose.Schema({
-    className:{
+    chapterName:{
         type:String,
         required:true,
-        unique:true
-    },
-    discription:{
-        type:String
     },
     date:{
         type:Date,

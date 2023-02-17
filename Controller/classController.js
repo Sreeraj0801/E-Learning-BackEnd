@@ -28,11 +28,9 @@ const errorHandle = async (errors)=>{
 //----------- Create class ---------------
 exports.createClass = async(req,res)=>{
     try {
-        console.log(req.body);
-        const {className , discription , date , courseName,seats} = req.body;
+        const {date ,courseName, chapterName,seats} = req.body; 
         let formatDate = parseDate(new Date(date));
-        console.log(formatDate);
-        const details = await classSchema.create({className , discription , date , courseName , formatDate,seats});
+        const details = await classSchema.create({date ,courseName, chapterName , formatDate,seats});
         res.status(201).json({details,created:true})
     } catch (error) {
         errorHandle(error)

@@ -14,11 +14,13 @@ const adminRouter = require('./Routes/Admin/Admin');
 const adminCourse = require('./Routes/Admin/Course');
 const adminClass = require('./Routes/Admin/Classes');
 const userManger = require('./Routes/Admin/UserMange');
+const adminChapter = require('./Routes/Admin/Chapter');
 // ##Users
 const userRouter = require('./Routes/Users/user')
 const Classes = require('./Routes/Users/Classes')
+const Courses = require('./Routes/Users/Courses')
 
-app.use(cors());
+app.use(cors({origin:"http://localhost:3000", methods: ["PUT","POST","DELETE","GET","PATCH"],credentials:true}))
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true }));
@@ -33,15 +35,17 @@ app.use('/admin',adminRouter);
 app.use('/admin/course',adminCourse);
 app.use('/admin/class',adminClass);
 app.use('/admin/user',userManger);
+app.use('/admin/chapter',adminChapter);
 //##user
 app.use('/',userRouter)
 app.use('/class',Classes)
+app.use('/course',Courses)
 
 
 
-//port running on 3000
-app.listen(3000,()=>{
-    console.log('Server Started');
+//port running on 4000
+app.listen(4000,()=>{
+    console.log('Server Started on port 4000');
 });
 
 

@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
     to: user.email,
     subject: 'Status Update',
     html: `    <h4>Hello,${user.uname}</h4>
-    <p>Your Entry for the  ${user.course}  have been <strong>approved</strong>.</p>
+    <p>Your Entry for the  ${user.course} course  have been <strong>approved</strong>.</p>
     <p>Regards,</p>
     <p>Admin</p>
     <p>E-Learning</p>
@@ -44,7 +44,7 @@ transporter.sendMail(mailOptions, (error, info) => {
 exports.userStatus = async (req,res,next) => {
     try {
         const {userId} = req.body;
-        console.log(userId);
+        console.log(userId,"hai");
         const details = await UserSchema.updateOne({ _id:userId}, { $set: { status: true } });
         const user = await UserSchema.findById({_id:userId});
         await sendEmail(user)
@@ -60,6 +60,7 @@ exports.userRequest = async (req,res) => {
     try {
         UserSchema.find({ status:false}, (error, documents) => {
             if (error) {
+              console.log(error);
                 res.json(error)
             } else {
                 res.json(documents)
@@ -68,5 +69,20 @@ exports.userRequest = async (req,res) => {
     } catch (error) {
      res.json("error")   
     }
+}
+//---------------------- user requests to login ----------------
+exports.userApproved = async (req,res) => {
+  try {
+      UserSchema.find({ status:true}, (error, documents) => {
+          if (error) {
+            console.log(error);
+              res.json(error)
+          } else {
+              res.json(documents)
+          }
+        });
+  } catch (error) {
+   res.json("error")   
+  }
 }
 

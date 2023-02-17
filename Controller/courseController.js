@@ -72,7 +72,6 @@ exports.updateCourse = async (req,res,next)=>{
 //--------------- Delete course-------------------
 exports.deleteCourse = async (req,res,next) => {
     const {id} = req.body;
-    console.log(id);
     try {
         let details = await courseSchema.findByIdAndRemove(id);
         res.json(details);

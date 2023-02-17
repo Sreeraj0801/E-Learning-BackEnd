@@ -4,16 +4,16 @@ const {createCourse,updateCourse,getAllCourses,getCourse,deleteCourse} = require
 const {checkAdmin}  = require('../../Middlewares/adminAuth');
 
 //------------------ Create Courses ----------
-router.post('/create',createCourse);
+router.post('/create',checkAdmin,createCourse);
 
 //----------------- Get all Courses ----------
-router.get('/',getAllCourses)
+router.get('/',checkAdmin,getAllCourses)
 
 //------------- Get Courses to edit ----------
-router.get('/edit/:id',getCourse)
+router.get('/edit/:id',checkAdmin,getCourse)
 
 //------------------ Update Courses ----------
-router.put('/edit',updateCourse)
+router.patch('/edit',checkAdmin,updateCourse)
 
 //------------------ Delete Courses ----------
 router.delete('/delete',deleteCourse)

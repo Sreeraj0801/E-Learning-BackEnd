@@ -4,10 +4,10 @@ const {checkAdmin}  = require('../../Middlewares/adminAuth');
 const {createClass,getAllClass,getClass,updateClass,deleteClass} = require('../../Controller/classController')
 
 //-------------- Create Class ---------------
-router.post('/create',createClass)
+router.post('/create',checkAdmin,createClass)
 
 //-------------- Get all Class --------------
-router.get('/',getAllClass)
+router.get('/',checkAdmin,getAllClass)
 
 //-------------- Get A Class --------------
 router.get('/edit/:id',checkAdmin,getClass)

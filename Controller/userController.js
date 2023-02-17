@@ -62,7 +62,7 @@ exports.userLogin = async (req, res) => {
         const user = await UserSchema.login(email, pword);
         console.log(user);
         if (!user.status) {
-            res.json("Need Approval")
+            res.json({message:"Need Approval"})
         } else {
             const token = createToken(user._id);
             res.cookie('userToken', token, {

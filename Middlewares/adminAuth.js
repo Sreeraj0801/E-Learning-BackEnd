@@ -9,6 +9,7 @@ const Pword = process.env.ADMIN_PASSWORD;
 module.exports = {
     //------------------check the userName and password--------------------->
     isAdmin : (req,res,next) => {
+      console.log("i am here");
         const {username,password} = req.body;
        try {
          if(username === Uname && password === Pword){
@@ -25,7 +26,6 @@ module.exports = {
     //------------------------check the token-------------------------------> 
     checkAdmin:(req,res,next) =>{
     const token = req.cookies.adminToken;
-    console.log(token);
   if (!token) {
     return res.status(401).json("Access denied. No token provided.");
   }
